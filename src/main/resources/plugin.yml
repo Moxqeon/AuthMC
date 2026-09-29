@@ -1,0 +1,9 @@
+name: AuthMC
+main: org.moxqeon.bukkit.auth.AuthMC
+api-version: 1.20
+version: ${version}
+author: Moxqeon
+depend:
+  - MoxLib
+softdepend:
+  - Skript
