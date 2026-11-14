@@ -91,8 +91,14 @@ public final class PlayerListener implements Listener {
 
     @EventHandler(priority = EventPriority.HIGHEST)
     private void onPlayerChat(AsyncChatEvent event) {
-        authMC.getLogger().info(event.getPlayer().getName() + event.isCancelled());
         if (authMC.getVerificationManager().checkVerification(event.getPlayer()).isVerified()) return;
+        event.setCancelled(true);
+        event.getPlayer().sendMessage(Language.localize(authMC, "Hint.EventWarning", null));
+    }
+
+    @EventHandler
+    private void onToggleFlight(PlayerToggleFlightEvent event) {
+        if(authMC.getVerificationManager().checkVerification(event.getPlayer()).isVerified()) return;
         event.setCancelled(true);
         event.getPlayer().sendMessage(Language.localize(authMC, "Hint.EventWarning", null));
     }
