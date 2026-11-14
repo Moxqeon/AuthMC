@@ -1,11 +1,12 @@
 import java.net.URI
+import java.nio.file.Files
+import java.nio.file.StandardCopyOption
 
 plugins {
     java
-    id("com.github.johnrengelman.shadow") version "8.1.1"
     id("java-library")
     id("maven-publish")
-    kotlin("jvm") version("2.4.0")
+    kotlin("jvm")
 }
 
 group = "org.moxqeon"
@@ -50,8 +51,16 @@ tasks {
     compileJava {
         options.encoding = "UTF-8"
     }
+    jar{
+        doLast {
+            val jarFile = this@jar.archiveFile.get().asFile
+            val dir = File("C:\\Users\\Kciyamat\\Desktop\\Purpur\\plugins")
+            val dest = File(dir, "${jarFile.name}")
+            dir.mkdirs()
+            Files.copy(jarFile.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING)
+        }
+    }
 }
-
 kotlin {
     jvmToolchain(21)
 }
