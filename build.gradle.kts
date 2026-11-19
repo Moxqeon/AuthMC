@@ -35,7 +35,12 @@ repositories {
 
 dependencies {
     compileOnly("org.moxqeon:MoxLib:1.1.0")
-    compileOnly(fileTree(mapOf("dir" to "../../BukkitLib", "include" to "*.jar")))
+    compileOnly("net.md-5:BungeeCord:2104")
+    compileOnly("ch.njol.skript:Skript:2.9.4")
+    compileOnly("io.papermc:paper-api:1.20.4")
+    compileOnly("io.papermc:paper-core:1.20.4")
+    compileOnly("net.kyori:adventure-api:4.14.0")
+    compileOnly("net.kyori:adventure-text-minimessage:4.14.0")
     compileOnly(kotlin("stdlib-jdk8"))
 }
 
