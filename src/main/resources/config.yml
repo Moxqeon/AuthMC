@@ -1,9 +1,9 @@
 Proxy:
   Enabled: true
-  Address: 127.0.0.1:7890
+  Address: 127.0.0.1:8080
 
 Microsoft:
-  ClientId: 27b9a083-0b15-400a-9920-6ae82e0b15d7
+  ClientId: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx
 
 Login:
   CheckIP: true
