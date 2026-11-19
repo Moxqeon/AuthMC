@@ -2,10 +2,11 @@ package org.moxqeon.bukkit.auth.lang;
 
 import com.google.common.base.Preconditions;
 import net.kyori.adventure.text.Component;
+import net.kyori.adventure.text.JoinConfiguration;
 import net.kyori.adventure.text.TextComponent;
 import net.kyori.adventure.text.event.ClickEvent;
 import net.kyori.adventure.text.event.HoverEvent;
-import net.kyori.adventure.text.serializer.legacy.LegacyComponentSerializer;
+import net.kyori.adventure.text.minimessage.MiniMessage;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.persistence.PersistentDataContainer;
@@ -38,13 +39,13 @@ public final class LanguageSupplier {
                             components.add(Component.text("■").style(child.style()).clickEvent(ClickEvent.openUrl("https://www.microsoft.com/link")).hoverEvent(HoverEvent.showText(hover)));
                             continue;
                         case "{prefix}":
-                            components.add(LegacyComponentSerializer.legacyAmpersand().deserialize(AuthMC.PREFIX));
+                            components.add(MiniMessage.miniMessage().deserialize(AuthMC.PREFIX));
                             continue;
                     }
                 }
                 components.add(child);
             }
-            return Component.join(Component.empty(), components);
+            return Component.join(JoinConfiguration.separator(Component.empty()), components);
         }));
         Language.registerSpecial(authMC, "Hint.UserCode", (component, context) -> {
             List<Component> components = new ArrayList<>();
@@ -55,7 +56,7 @@ public final class LanguageSupplier {
             for (Component child : AdventureUtil.recursive(component)) {
                 if (child instanceof TextComponent textChild) {
                     if (textChild.content().equals("{prefix}")) {
-                        components.add(LegacyComponentSerializer.legacyAmpersand().deserialize(AuthMC.PREFIX));
+                        components.add(MiniMessage.miniMessage().deserialize(AuthMC.PREFIX));
                     } else {
                         Component hover;
                         if (userCodeReady) {
@@ -71,18 +72,18 @@ public final class LanguageSupplier {
                     components.add(child);
                 }
             }
-            return Component.join(Component.empty(), components);
+            return Component.join(JoinConfiguration.separator(Component.empty()), components);
         });
-        Language.registerSpecial(authMC, new String[]{"Hint.BindSuccess", "Hint.LoginSuccess", "Hint.LoginFail","Hint.EventWarning", "Hint.PassLogin"}, (component, context) -> {
+        Language.registerSpecial(authMC, new String[]{"Hint.BindSuccess", "Hint.LoginSuccess", "Hint.LoginFail", "Hint.EventWarning", "Hint.PassLogin"}, (component, context) -> {
             List<Component> components = new ArrayList<>();
             for (Component child : AdventureUtil.recursive(component)) {
                 if (child instanceof TextComponent textChild) {
                     if (textChild.content().equals("{prefix}"))
-                        components.add(LegacyComponentSerializer.legacyAmpersand().deserialize(AuthMC.PREFIX));
+                        components.add(MiniMessage.miniMessage().deserialize(AuthMC.PREFIX));
                     else components.add(child);
                 } else components.add(child);
             }
-            return Component.join(Component.empty(), components);
+            return Component.join(JoinConfiguration.separator(Component.empty()), components);
         });
     }
 }
