@@ -19,7 +19,6 @@ public final class SkriptListener implements Listener {
     @EventHandler
     private void onEffectCommand(EffectCommandEvent event) {
         if (event.getSender() instanceof Player player) {
-            authMC.getLogger().info("Effect command detected");
             if (authMC.getVerificationManager().checkVerification(player).isVerified()) return;
             event.setCancelled(true);
             player.sendMessage(Language.localize(authMC, "Hint.EventWarning", null));
