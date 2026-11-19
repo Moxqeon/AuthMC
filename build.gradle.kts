@@ -56,15 +56,6 @@ tasks {
     compileJava {
         options.encoding = "UTF-8"
     }
-    jar{
-        doLast {
-            val jarFile = this@jar.archiveFile.get().asFile
-            val dir = File("C:\\Users\\Kciyamat\\Desktop\\Purpur\\plugins")
-            val dest = File(dir, "${jarFile.name}")
-            dir.mkdirs()
-            Files.copy(jarFile.toPath(), dest.toPath(), StandardCopyOption.REPLACE_EXISTING)
-        }
-    }
 }
 kotlin {
     jvmToolchain(21)
